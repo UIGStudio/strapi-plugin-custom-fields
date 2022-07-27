@@ -1,0 +1,39 @@
+{
+  "name": "strapi-plugin-content-preview",
+  "version": "0.0.1",
+  "description": "This plugin enables content preview",
+  "license": "MIT",
+  "strapi": {
+    "name": "content-preview",
+    "description": "This plugin enables content preview",
+    "kind": "plugin",
+    "displayName": "Content Preview"
+  },
+  "main": "strapi-admin.js",
+  "author": "Uig Studio <lucas@uigstudio.com> (https://uigstudio.com)",
+  "maintainers": [
+    "Łukasz Micał <lucas@uigstudio.com> (https://uigstudio.com)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UIGStudio/strapi-plugin-content-preview.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UIGStudio/strapi-plugin-content-preview/issues"
+  },
+  "homepage": "https://github.com/UIGStudio/strapi-plugin-content-preview#readme",
+  "keywords": [
+    "strapi",
+    "plugin",
+    "preview"
+  ],
+  "dependencies": {},
+  "peerDependencies": {
+    "@strapi/strapi": "^4.0.0",
+    "@strapi/utils": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  }
+}
