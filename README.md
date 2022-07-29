@@ -29,10 +29,11 @@ module.exports = ({ env }) => ({
     "content-preview": {
         enabled:  true,
         config: {
+            autoSave: true,
             previewUrl: env('PREVIEW_URL'),
             namespaces: {
-                'api::pages.pages': '',
-                'api::news.news': 'news'
+                'api::pages.pages': {urlprefix: ''},
+                'api::news.news': {urlprefix: '', previewUrl: env('PREVIEW_OTHER_URL')}
             },
         },
     },

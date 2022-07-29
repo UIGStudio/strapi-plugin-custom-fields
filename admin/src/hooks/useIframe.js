@@ -1,31 +1,34 @@
 import {useCallback, useEffect, useRef} from 'react';
 import {useCMEditViewDataManager} from '@strapi/helper-plugin';
 import debounce from 'lodash/debounce';
+import {createUrl} from "../utils/preview";
 
-const parseUrl = (config, uid, id) => {
-    const prefix = config.namespaces[uid];
-    return `${config.previewUrl}/${prefix}/preview_${id}`;
-};
 
 export default function useIframe(config) {
     const ref = useRef(null);
-    const {modifiedData, allLayoutData} = useCMEditViewDataManager();
-    const data = useCMEditViewDataManager();
+    const {modifiedData, initialData, allLayoutData,} = useCMEditViewDataManager();
+    const {versionNumber, publishedAt} = modifiedData;
 
-    const fetchPreview = async () => {
-        console.log(data);
-        const url = parseUrl(config, allLayoutData.contentType.uid, modifiedData.id);
-        const res = await fetch(url);
-        const html = await res.text();
-        ref.current.src = url;
-        ref.current.contentDocument.querySelector('html').innerHTML = html;
-    };
+    const refreshPreview = useCallback(() => {
+        ref.current.src = createUrl(config, allLayoutData.contentType.uid, modifiedData.id);
+    }, []);
 
-    const delayCallApi = useCallback(debounce(fetchPreview, 5000), []);
+    const saveContent = useCallback(() => {
+        // FIXME save content in another way
+        document.querySelector('button[type="submit"]').click();
+    }, []);
+
+    const callSave = useCallback(debounce(saveContent, 5000), []);
 
     useEffect(() => {
-        delayCallApi();
-    }, [modifiedData]);
+        if (versionNumber && versionNumber !== 1 && !publishedAt && config.autoSave) {
+            callSave()
+        }
+    }, [modifiedData, config]);
+
+    useEffect(() => {
+        refreshPreview();
+    }, [initialData]);
 
     return ref;
 }
