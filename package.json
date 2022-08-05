@@ -1,11 +1,11 @@
 {
-    "name": "@uigstudio/strapi-plugin-content-preview",
+    "name": "@uigstudio/strapi-plugin-custom-fields",
     "private": false,
-    "version": "0.0.3",
-    "description": "This plugin enables strapi content preview",
+    "version": "0.0.1",
+    "description": "This plugin add custom fields",
     "license": "MIT",
     "strapi": {
-        "name": "content-preview",
+        "name": "custom-fields",
         "description": "This plugin enables content preview",
         "kind": "plugin",
         "displayName": "Content Preview"
@@ -17,23 +17,27 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/UIGStudio/strapi-plugin-content-preview.git"
+        "url": "git+https://github.com/UIGStudio/strapi-plugin-custom-fields.git"
     },
     "bugs": {
-        "url": "https://github.com/UIGStudio/strapi-plugin-content-preview/issues"
+        "url": "https://github.com/UIGStudio/strapi-plugin-custom-fields/issues"
     },
-    "homepage": "https://github.com/UIGStudio/strapi-plugin-content-preview#readme",
+    "homepage": "https://github.com/UIGStudio/strapi-plugin-custom-fields#readme",
     "keywords": [
         "strapi",
         "plugin",
         "preview"
     ],
-    "dependencies": {},
+    "devDependencies": {
+        "@babel/core": "^7.18.10",
+        "@babel/eslint-parser": "^7.18.9",
+        "eslint": "^8.21.0",
+        "prettier": "^2.7.1"
+    },
     "peerDependencies": {
+        "@strapi/design-system": "^4.0.0",
         "@strapi/strapi": "^4.0.0",
-        "@strapi/utils": "^4.0.0",
-        "@notum-cz/strapi-plugin-content-versioning": "*",
-        "lodash": "*"
+        "@strapi/utils": "^4.0.0"
     },
     "engines": {
         "node": ">=12.x.x <=16.x.x",
