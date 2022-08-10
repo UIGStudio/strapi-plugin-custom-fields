@@ -1,9 +1,14 @@
 {
     "name": "@uigstudio/strapi-plugin-custom-fields",
     "private": false,
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "This plugin add custom fields",
     "license": "MIT",
+    "scripts": {
+        "format": "prettier --write \"./**/*.+(js|jsx)\"",
+        "lint": "eslint \"./**/*.+(js|jsx)\"",
+        "lint:fix": "eslint --fix \"./**/*.+(js|jsx)\""
+    },
     "strapi": {
         "name": "custom-fields",
         "description": "This plugin enables content preview",
@@ -42,5 +47,11 @@
     "engines": {
         "node": ">=12.x.x <=16.x.x",
         "npm": ">=6.0.0"
-    }
+    },
+    "dependencies": {
+        "react-color": "^2.19.3"
+    },
+    "presets": [
+        "@babel/preset-react"
+    ]
 }

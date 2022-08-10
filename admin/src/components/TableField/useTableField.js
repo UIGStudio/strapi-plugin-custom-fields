@@ -62,8 +62,8 @@ export default function useTableField(name, value, onChange) {
                         rowIndex !== rI
                             ? row
                             : row.map((cell, cI) =>
-                                  cellIndex !== cI ? cell : e.target.value,
-                              ),
+                                cellIndex !== cI ? cell : e.target.value,
+                            ),
                     ),
                 },
             });

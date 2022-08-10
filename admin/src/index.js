@@ -1,14 +1,17 @@
-import {prefixPluginTranslations} from "@strapi/helper-plugin";
-import pluginId from "./pluginId";
-import TableField from "./components/TableField";
+import {prefixPluginTranslations} from '@strapi/helper-plugin';
+import pluginId from './pluginId';
+import TableField from './components/TableField';
+import ColorField from './components/ColorField';
 
 export default {
     register(app) {
-        app.addFields([{type: "uig-table-type", Component: TableField}]);
+        app.addFields([
+            {type: 'uig-table-type', Component: TableField},
+            {type: 'uig-color-type', Component: ColorField},
+        ]);
     },
 
-    bootstrap(app) {
-    },
+    bootstrap() {},
     async registerTrads({locales}) {
         const importedTrads = await Promise.all(
             locales.map((locale) => {
@@ -25,7 +28,7 @@ export default {
                             locale,
                         };
                     });
-            })
+            }),
         );
 
         return Promise.resolve(importedTrads);
