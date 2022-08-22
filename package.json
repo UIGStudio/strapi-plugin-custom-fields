@@ -1,7 +1,7 @@
 {
     "name": "@uigstudio/strapi-plugin-custom-fields",
     "private": false,
-    "version": "0.0.2",
+    "version": "0.1.0",
     "description": "This plugin add custom fields",
     "license": "MIT",
     "scripts": {
@@ -36,6 +36,7 @@
     "devDependencies": {
         "@babel/core": "^7.18.10",
         "@babel/eslint-parser": "^7.18.9",
+        "@strapi/design-system": "^1.2.1",
         "eslint": "^8.21.0",
         "prettier": "^2.7.1"
     },

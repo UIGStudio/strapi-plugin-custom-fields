@@ -2,12 +2,14 @@ import {prefixPluginTranslations} from '@strapi/helper-plugin';
 import pluginId from './pluginId';
 import TableField from './components/TableField';
 import ColorField from './components/ColorField';
+import Select from './components/Select';
 
 export default {
     register(app) {
         app.addFields([
-            {type: 'uig-table-type', Component: TableField},
-            {type: 'uig-color-type', Component: ColorField},
+            {type: 'uig-table', Component: TableField},
+            {type: 'uig-color', Component: ColorField},
+            {type: 'uig-select', Component: Select},
         ]);
     },
 
