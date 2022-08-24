@@ -6,11 +6,12 @@ import useSelect from './useSelect';
 const SelectComponent = (data) => {
     const {options, ...props} = useSelect(data);
 
-    console.log(data);
     return (
         <Select {...props}>
             {options.map(([value, label]) => (
-                <Option value={value}>{label}</Option>
+                <Option value={value} key={value}>
+                    {label}
+                </Option>
             ))}
         </Select>
     );

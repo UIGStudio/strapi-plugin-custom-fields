@@ -1,4 +1,5 @@
 import {useCallback, useMemo} from 'react';
+import useJSON from '../../utils/useJSON';
 
 const initialValue = {
     head: {
@@ -19,25 +20,7 @@ const initialValue = {
 };
 
 export default function useTableField(name, value, onChange) {
-    const data = useMemo(() => {
-        try {
-            return JSON.parse(value);
-        } catch (_) {
-            return initialValue;
-        }
-    }, [value]);
-
-    const change = useCallback(
-        (newData) => {
-            onChange({
-                target: {
-                    name,
-                    value: JSON.stringify(newData),
-                },
-            });
-        },
-        [onChange],
-    );
+    const {value: data, onChange: change} = useJSON(onChange, value, initialValue);
 
     const visibleChange = useCallback(
         (type, visible) => {
@@ -62,8 +45,8 @@ export default function useTableField(name, value, onChange) {
                         rowIndex !== rI
                             ? row
                             : row.map((cell, cI) =>
-                                cellIndex !== cI ? cell : e.target.value,
-                            ),
+                                  cellIndex !== cI ? cell : e.target.value,
+                              ),
                     ),
                 },
             });

@@ -1,7 +1,7 @@
 {
     "name": "@uigstudio/strapi-plugin-custom-fields",
     "private": false,
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "This plugin add custom fields",
     "license": "MIT",
     "scripts": {

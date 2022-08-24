@@ -1,5 +1,6 @@
 import {useIntl} from 'react-intl';
-import {useCallback, useMemo} from 'react';
+import {useMemo} from 'react';
+import useJSON from '../../utils/useJSON';
 
 const useFormattedString = (data, defaultValue) => {
     const {formatMessage} = useIntl();
@@ -12,6 +13,8 @@ const useFormattedString = (data, defaultValue) => {
             : defaultValue;
     }, [data, defaultValue, formatMessage]);
 };
+
+const defaultData = (multiple) => ({data: multiple ? [] : undefined});
 
 export default function useSelect({
     intlLabel,
@@ -27,23 +30,10 @@ export default function useSelect({
     multiple,
 }) {
     const options = useMemo(() => attribute.options || {}, [attribute]);
-    const data = useMemo(() => {
-        try {
-            return JSON.parse(value);
-        } catch (_) {
-            return {data: []};
-        }
-    }, [value]);
-    const change = useCallback(
-        (data) => {
-            onChange({
-                target: {
-                    name,
-                    value: JSON.stringify({data}),
-                },
-            });
-        },
-        [onChange],
+    const select = useJSON(onChange, value, defaultData(multiple));
+    const data = useMemo(
+        () => select.value.data || defaultData(multiple).data,
+        [select, multiple],
     );
 
     return {
@@ -52,12 +42,12 @@ export default function useSelect({
         placeholder: useFormattedString(placeholder, ''),
         options: Object.entries(options),
         multi: multiple,
-        value: data.data,
+        value: data,
         disabled,
         error,
         required,
-        onClear: () => change([]),
-        onChange: change,
+        onClear: () => select.onChange(defaultData),
+        onChange: (data) => select.onChange({data}),
         customizeContent: (values) =>
             values.map((val) => (val in options ? options[val] : val)).join(', '),
     };
